@@ -1,9 +1,16 @@
 // Iteration #1: Find the maximum
-function maxOfTwoNumbers(num1, num2) {
+/* function maxOfTwoNumbers(num1, num2) {
   if (num1 > num2) {
-return num1
+    return num1;
   } else {
-    return num2
+    return num2;
+  }
+} */
+function maxOfTwoNumbers(x, y) {
+  if (x > y) {
+    return x;
+  } else {
+    return y;
   }
 }
 
@@ -11,10 +18,12 @@ return num1
 const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
 
 function findLongestWord(arr) {
-  let word = "";
-  for (let i = 0; i < arr.length; i++){
+  if (arr.length === 0) return null;
+
+  let word = '';
+  for (let i = 0; i < arr.length; i++) {
     if (word.length < arr[i].length) {
-      word = arr[i]
+      word = arr[i];
     }
   }
   return word;
@@ -25,46 +34,121 @@ const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
 function sumNumbers(arr) {
   let sum = 0;
-  for (let i = 0; i < arr.length; i++){
-    sum += arr[i]
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
   }
-return sum;
+  return sum;
 }
 
-
-
 // Iteration #3.1 Bonus:
-function sum() {}
+const mixedArr = [6, 12, 'miami', 1, true, 'barca', '200', 'lisboa', 8, 10];
 
-// each letter in the string is 1, boolean true is 1, then add it all up
+function sum(array) {
+  if (array.length === 0) {
+    return 0;
+  }
+  let sum = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (typeof array[i] === 'number') {
+      sum += array[i];
+    } else if (typeof array[i] === 'string') {
+      sum += array[i].length;
+    } else if (array[i] === true) {
+      sum += 1;
+    } else if (array[i] === false) {
+      continue;
+    } else {
+      throw new Error('error');
+    }
+  }
+  return sum;
+}
 
 // Iteration #4: Calculate the average
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
 function averageNumbers(arr) {
+  if (!arr.length) return null;
+
   let sum = sumNumbers(arr);
   let avg = sum / arr.length;
-  
+
   return avg;
 }
 
 // Level 2: Array of strings
-const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
+const wordsArr = [
+  'seat',
+  'correspond',
+  'linen',
+  'motif',
+  'hole',
+  'smell',
+  'smart',
+  'chaos',
+  'fuel',
+  'palace',
+];
 
-// function averageWordLength() { }
-
-function averageWordLength(arr) { 
+function averageWordLength(arr) {
+  if (!arr.length) return null;
   let total = 0;
-  for (let i = 0; i < arr.length; i++){
+  for (let i = 0; i < arr.length; i++) {
     total += arr[i].length;
   }
   let average = total / arr.length;
-  return average
+  return average;
 }
 
-// Bonus - Iteration #4.1
-function avg() {}
+// Bonus - Iteration #4.3
+/* function avg(array) {
+  if (array.length === 0) {
+    return null;
+  }
+  let sum = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (typeof array[i] === 'number') {
+      sum += array[i];
+    } else if (typeof array[i] === 'string') {
+      sum += array[i].length;
+    } else if (array[i] === true) {
+      sum += 1;
+    }
+  }
+  let result = sum / array.length;
+  return result
+} */
+
+function avg(arr) {
+  if (!arr.length) return null;
+  else {
+    return sum(arr) / arr.length;
+  }
+}
+
+/* function avg(array) {
+  if(array.length === 0) return null;
+
+  let result = 0;
+  for (let i = 0; i < array.length; i++) {
+      if (typeof array[i] === "boolean") {
+        if (array[i] === true) {
+          result += 1;
+        }
+        else if(array[i] === false) {
+          result += 0;
+        }
+      } 
+      else if (typeof array[i] === "number") {
+        result += array[i];
+      } 
+      else if (typeof array[i] === "string") {
+        result += array[i].length;
+      }
+  }
+  return result / array.length;
+} */
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
@@ -78,29 +162,46 @@ const wordsUnique = [
   'poison',
   'communion',
   'simple',
-  'bring'
+  'bring',
 ];
 
 function uniquifyArray(arr) {
-  let repeated = [];
-  arr.forEach(element => {
-    if (!repeated.includes(element)) {
-      repeated.push(element);
+  if (!arr.length) return null;
+  let uniqueArray = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (!uniqueArray.includes(arr[i])) {
+      uniqueArray.push(arr[i]);
     }
-  });
-  return repeated;
+  }
+  return uniqueArray;
 }
-
-
 
 // Iteration #6: Find elements
-const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
+const wordsFind = [
+  'machine',
+  'subset',
+  'trouble',
+  'starting',
+  'matter',
+  'eating',
+  'truth',
+  'disobedience',
+];
 
-function doesWordExist(arr, search) {
-  return arr.includes(search)
+function doesWordExist(arr, word) {
+  if (arr.length == 0) return null;
+  return arr.includes(word);
 }
 
-
+/* function doesWordExist(arr, word) {
+  if(arr.length == 0) return null;
+  for(let i = 0; i < arr.length; i++){
+    if(arr.includes(word)){
+      return true
+    } else return false
+  }
+} */
+doesWordExist(wordsFind);
 
 // Iteration #7: Count repetition
 const wordsCount = [
@@ -114,20 +215,46 @@ const wordsCount = [
   'matter',
   'truth',
   'disobedience',
-  'matter'
+  'matter',
 ];
 
-function howManyTimes(arr, word) {
-  let count = 0;
-arr.forEach(element => {
-  if (element === word) {
-    count += 1;
+function howManyTimes(array, word) {
+  if (array.length === 0) {
+    return 0;
   }
-});
-return count
+  let newArray = [];
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === word) {
+      newArray.push(array[i]);
+    }
+  }
+  return newArray.length;
 }
 
+/* function howManyTimes(arrayOfWords, word) {
+  let count = 0;
+  if (arrayOfWords.length === 0) {
+    return 0;
+  } else {
+    for (i = 0; i < arrayOfWords.length; i++) {
+      if (word === arrayOfWords[i]) {
+        count++;
+      }
+    }
+    return count;
+  }
+} */
 
+// other example using forEach
+/* function howManyTimes(arr, word) {
+  let count = 0;
+  arr.forEach((e) => {
+    if (e === word) {
+      count += 1;
+    }
+  });
+  return count;
+} */
 
 // Iteration #8: Bonus
 const matrix = [
@@ -150,15 +277,15 @@ const matrix = [
   [4, 42, 16, 73, 38, 25, 39, 11, 24, 94, 72, 18, 8, 46, 29, 32, 40, 62, 76, 36],
   [20, 69, 36, 41, 72, 30, 23, 88, 34, 62, 99, 69, 82, 67, 59, 85, 74, 4, 36, 16],
   [20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54],
-  [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
+  [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48],
 ];
 
-function greatestProduct( matrix, n=4 ) {
+function greatestProduct(matrix, n = 4) {
   let greatest = [];
 
   //Horizontal adjacents
-  for ( let a = 0; a < matrix.length; a++ ) {
-    for ( let i = 0; i <= matrix[a].length - n; i++) {
+  for (let a = 0; a < matrix.length; a++) {
+    for (let i = 0; i <= matrix[a].length - n; i++) {
       let prod = 1;
       for (let j = i; j < i + n; j++) {
         prod *= matrix[a][j];
@@ -168,10 +295,10 @@ function greatestProduct( matrix, n=4 ) {
   }
 
   // Vertical adjacents
-  for ( let a = 0; a < matrix.length; a++ ) {
-    for ( let i = 0; i <= matrix.length - n; i++ ) {
+  for (let a = 0; a < matrix.length; a++) {
+    for (let i = 0; i <= matrix.length - n; i++) {
       let prod = 1;
-      for ( let j = i; j < i + n; j++ ) {
+      for (let j = i; j < i + n; j++) {
         prod *= matrix[j][a];
       }
       greatest.push(prod);
@@ -179,10 +306,10 @@ function greatestProduct( matrix, n=4 ) {
   }
 
   // Diagonal adjacents
-  for ( let a = 0; a <= matrix.length - n; a++ ) {
-    for ( let i = 0; i <= matrix[a].length - n; i++ ) {
+  for (let a = 0; a <= matrix.length - n; a++) {
+    for (let i = 0; i <= matrix[a].length - n; i++) {
       let prod = 1;
-      for ( let j = 0; j < n; j++ ) {
+      for (let j = 0; j < n; j++) {
         prod *= matrix[a + j][i + j];
       }
       greatest.push(prod);
@@ -190,9 +317,6 @@ function greatestProduct( matrix, n=4 ) {
   }
   return Math.max(...greatest);
 }
-
-
-
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
@@ -208,6 +332,6 @@ if (typeof module !== 'undefined') {
     uniquifyArray,
     doesWordExist,
     howManyTimes,
-    greatestProduct
+    greatestProduct,
   };
 }
